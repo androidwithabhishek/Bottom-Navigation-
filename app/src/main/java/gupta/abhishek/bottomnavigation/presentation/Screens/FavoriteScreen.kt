@@ -1,4 +1,4 @@
-package gupta.abhishek.bottomnavigation.ui.Screens
+package gupta.abhishek.bottomnavigation.presentation.Screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding

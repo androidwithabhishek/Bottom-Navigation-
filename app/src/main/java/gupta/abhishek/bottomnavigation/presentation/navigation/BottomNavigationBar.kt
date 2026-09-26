@@ -1,4 +1,4 @@
-package gupta.abhishek.bottomnavigation
+package gupta.abhishek.bottomnavigation.presentation.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -6,12 +6,8 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import kotlinx.coroutines.selects.select
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
@@ -21,8 +17,7 @@ fun BottomNavigationBar(navController: NavHostController) {
 
     val currentDestination = navBackStackEntry?.destination
 
-
-    val navitems = listOf(
+    val navItems = listOf(
         BottomNavItem.HomeItem,
         BottomNavItem.SearchItem,
         BottomNavItem.FavoritesItem,
@@ -33,13 +28,12 @@ fun BottomNavigationBar(navController: NavHostController) {
 
     ) {
 
-        navitems.forEachIndexed { index, item ->
-
-            val selected = currentDestination
-                ?.hasRoute(item.route::class) == true
+        navItems.forEachIndexed { index, item ->
 
 
-            NavigationBarItem(selected = false, onClick = {
+            val selected = currentDestination?.route == item.route
+
+            NavigationBarItem(selected = selected, onClick = {
 
                 navController.navigate(item.route) {
                     popUpTo(navController.graph.startDestinationId) {
@@ -65,6 +59,5 @@ fun BottomNavigationBar(navController: NavHostController) {
 
 
     }
-
 
 }

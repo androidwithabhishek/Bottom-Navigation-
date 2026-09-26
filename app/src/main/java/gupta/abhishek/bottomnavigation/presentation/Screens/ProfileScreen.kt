@@ -1,5 +1,6 @@
-package gupta.abhishek.bottomnavigation.ui.Screens
+package gupta.abhishek.bottomnavigation.presentation.Screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SearchScreen(modifier: Modifier = Modifier) {
+fun ProfileScreen(modifier: Modifier = Modifier, onClick: () -> Unit) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(30) { index ->
             Text(
-                text = "Search result $index",
-                modifier = Modifier.padding(16.dp)
+                text = "Profile item $index",
+                modifier = Modifier
+                    .padding(16.dp)
+                    .clickable(onClick = { onClick() })
             )
             Divider()
         }
